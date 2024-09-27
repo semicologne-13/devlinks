@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevLinks - Link Sharing App
 
-## Getting Started
+DevLinks is a responsive web application built with Next.js 14, allowing users to create and share customizable link collections. This project was developed as an assignment, replicating a provided Figma design with precision and incorporating modern web technologies.
 
-First, run the development server:
+## Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [Next.js 14](https://nextjs.org/) with App Router
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+
+## Features
+
+- Create and manage a collection of links
+- Drag-and-drop functionality for reordering links
+- Real-time preview of link collection
+- Responsive design for all screen sizes
+- Customizable UI components
+- Various color schemes matching the prototype
+
+## Installation
+
+To set up the project locally, follow these steps:
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/devlinks.git
+   cd devlinks
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+3. Install specific dependencies:
+   ```
+   npm install next@14 react react-dom
+   npm install -D typescript @types/react @types/node
+   npm install tailwindcss postcss autoprefixer
+   npm install framer-motion
+   ```
+
+4. Install shadcn/ui components:
+   ```
+   npx shadcn-ui@latest init
+   ```
+   Follow the prompts to set up shadcn/ui in your project.
+
+5. Install specific shadcn/ui components:
+   ```
+   npx shadcn-ui@latest add button
+   npx shadcn-ui@latest add input
+   npx shadcn-ui@latest add select
+   ```
+
+## Usage
+
+1. Start the development server:
+   ```
+   npm run dev
+   ```
+
+2. Open your browser and navigate to `http://localhost:3000`
+
+## Project Structure
+
+The project follows the Next.js 14 App Router structure:
+
+```
+devlinks/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── ...
+├── components/
+│   ├── ui/
+│   │   ├── button.tsx
+│   │   ├── input.tsx
+│   │   └── select.tsx
+│   └── ...
+├── public/
+│   └── assets/
+├── styles/
+│   └── globals.css
+├── lib/
+├── types/
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Link Management
+- Uses Framer Motion's `Reorder` component for drag-and-drop functionality
+- Implements real-time updating of links in the preview SVG
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Preview
+- SVG-based preview updates dynamically as links are added or modified
+- Clickable links in the preview navigate to the entered URLs
 
-## Learn More
+### UI Components
+- Utilizes customized shadcn/ui components (Button, Input, Select)
+- Styling adjustments made to match the Figma prototype
 
-To learn more about Next.js, take a look at the following resources:
+### Responsive Design
+- Implements responsive layouts for various screen sizes as specified in the prototype
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project uses Tailwind CSS for styling. You can customize the appearance by modifying the `tailwind.config.js` file and the component styles.
 
-## Deploy on Vercel
+## Assets
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All assets provided in the Figma file have been incorporated into the project and can be found in the `public/assets/` directory.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
