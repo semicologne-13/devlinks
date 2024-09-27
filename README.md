@@ -114,6 +114,20 @@ The project uses Tailwind CSS for styling. You can customize the appearance by m
 
 All assets provided in the Figma file have been incorporated into the project and can be found in the `public/assets/` directory.
 
+## Deployment
+
+This project can be easily deployed to Vercel, which provides an optimal hosting environment for Next.js applications.
+
+To deploy to Vercel:
+
+1. Push your code to a GitHub repository.
+2. Go to [Vercel](https://vercel.com/) and sign up or log in.
+3. Click on "New Project" and select your GitHub repository.
+4. Vercel will automatically detect that it's a Next.js project and set up the build configuration.
+5. Click "Deploy" and wait for the build to complete.
+
+Vercel will provide you with a URL where your application is hosted. You can also set up a custom domain in the Vercel dashboard.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
