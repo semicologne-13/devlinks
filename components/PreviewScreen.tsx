@@ -133,37 +133,39 @@ export default function PreviewScreen() {
                   <rect width="72" height="8" x="117.5" y="214" fill="#EEE" rx="4"/>
                   {
                     displayedLinks.map((link, index) => (
-                      <g key={link.id} className="cursor-pointer">
-                        <rect 
-                          width="237" 
-                          height="44" 
-                          x="35" 
-                          y={275 + index * 64} 
-                          fill={link.platform ? getPlatformColor(link.platform) : '#EEE'} 
-                          rx="8"
-                        />
-                        <foreignObject x="35" y={275 + index * 64} width="237" height="44">
-                          {
-                            link.platform ? (
-                              <div className="flex items-center justify-between h-full px-4">
-                                <div className="flex items-center space-x-2">
-                                  <Image 
-                                    src={getPlatformIcon(link.platform)} 
-                                    width={16} 
-                                    height={16} 
-                                    alt={link.platform} 
-                                    className="fill-white"
-                                  />
-                                  <span className="text-white font-normal text-[12px]">{link.platform}</span>
-                                </div>
-                                <Image src={right} className="text-white" height={16} width={16} alt="right-arrow"/>
-                            </div>
-                            ): (
-                              <div></div>
-                            )
-                          }
-                        </foreignObject>
-                      </g>
+                      <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer">
+                        <g key={link.id} className="cursor-pointer">
+                          <rect 
+                            width="237" 
+                            height="44" 
+                            x="35" 
+                            y={275 + index * 64} 
+                            fill={link.platform ? getPlatformColor(link.platform) : '#EEE'} 
+                            rx="8"
+                          />
+                          <foreignObject x="35" y={275 + index * 64} width="237" height="44">
+                            {
+                              link.platform ? (
+                                <div className="flex items-center justify-between h-full px-4">
+                                  <div className="flex items-center space-x-2">
+                                    <Image 
+                                      src={getPlatformIcon(link.platform)} 
+                                      width={16} 
+                                      height={16} 
+                                      alt={link.platform} 
+                                      className="fill-white"
+                                    />
+                                    <span className="text-white font-normal text-[12px]">{link.platform}</span>
+                                  </div>
+                                  <Image src={right} className="text-white" height={16} width={16} alt="right-arrow"/>
+                              </div>
+                              ): (
+                                <div></div>
+                              )
+                            }
+                          </foreignObject>
+                        </g>
+                      </a>
                     ))
                   }
                   {
