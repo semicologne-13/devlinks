@@ -15,7 +15,7 @@ export const navItems: NavItem[] = [
     },
     {
         label: 'Profile Details',
-        href: '/profile-details',
+        href: '/',
         icon: profile
     }
 ]
