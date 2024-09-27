@@ -16,6 +16,8 @@ const buttonVariants = cva(
           "bg-outline-button text-non-selected-button",
         outline:
           "border border-outline-button text-outline-button bg-white hover:bg-selected-button hover:text-selected-text",
+        ghost:
+          "",
         secondary:
           "bg-non-selected-button text-non-selected-text hover:bg-selected-button hover:text-selected-text",
       },
