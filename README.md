@@ -25,7 +25,7 @@ To set up the project locally, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/devlinks.git
+   git clone https://github.com/semicologne-13/devlinks.git
    cd devlinks
    ```
 
