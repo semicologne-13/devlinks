@@ -15,6 +15,9 @@ import sort from "@/public/icon-drag-and-drop.svg"
 import copy from "@/public/icon-link.svg"
 import right from "@/public/icon-arrow-right.svg"
 
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+
 import { platforms } from "@/data/platform";
 import { validURL } from "@/data/validURL";
 
@@ -116,8 +119,8 @@ export default function PreviewScreen() {
     return(
         <div className="flex flex-col gap-6 md:flex-row flex-grow">
           <div className="w-full lg:w-[40%] hidden lg:block">
-            <div className="flex flex-col items-center justify-center rounded-[12px] bg-white px-24 pt-32 h-full pb-10 mb-10 absolute">
-              <div className="sticky top-0 h-[630px] w-[306px]">
+            <div className="flex flex-col items-center rounded-[12px] bg-white px-24 pt-32 h-full pb-10 mb-10">
+              <div className="h-[630px] w-[306px]">
                 <Image
                   src={preview}
                   width={306}
@@ -125,12 +128,7 @@ export default function PreviewScreen() {
                   alt="Preview Screen"
                   className="object-contain flex-1 mx-auto"
                 />
-                <svg xmlns="http://www.w3.org/2000/svg" width="308" height="632" fill="none" viewBox="0 0 308 632" className="absolute top-0 left-0">
-                  <path stroke="none" d="M1 54.5C1 24.953 24.953 1 54.5 1h199C283.047 1 307 24.953 307 54.5v523c0 29.547-23.953 53.5-53.5 53.5h-199C24.953 631 1 607.047 1 577.5v-523Z"/>
-                  <path fill="none" stroke="none" d="M12 55.5C12 30.923 31.923 11 56.5 11h24C86.851 11 92 16.149 92 22.5c0 8.008 6.492 14.5 14.5 14.5h95c8.008 0 14.5-6.492 14.5-14.5 0-6.351 5.149-11.5 11.5-11.5h24c24.577 0 44.5 19.923 44.5 44.5v521c0 24.577-19.923 44.5-44.5 44.5h-195C31.923 621 12 601.077 12 576.5v-521Z"/>
-                  <circle cx="153.5" cy="112" r="48" fill="#EEE"/>
-                  <rect width="160" height="16" x="73.5" y="185" fill="#EEE" rx="8"/>
-                  <rect width="72" height="8" x="117.5" y="214" fill="#EEE" rx="4"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="308" height="632" fill="none" viewBox="0 0 308 632" className="absolute top-[15.3rem] left-[12.5rem]">
                   {
                     displayedLinks.map((link, index) => (
                       <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer">
@@ -223,72 +221,74 @@ export default function PreviewScreen() {
                         </h2>
                       </div>
                     ) : (
-                      <Reorder.Group axis="y" values={links} onReorder={handleReorder} className='flex flex-col gap-3 w-full'>
-                      {
-                      links.map((link, index) => (
-                        <Reorder.Item value={link} key={link.id}>
-                          <div key={link.id} className="w-full items-center justify-center gap-2 rounded-[12px] bg-add-new py-5 px-6 flex-grow">
-                            <div className="flex justify-between items-center mb-2">
-                              <div className="flex items-center gap-3">
-                                <Image
-                                  src={sort}
-                                  width={12}
-                                  height={6}
-                                  alt="Sort Icon"
-                                  className="h-[6px] w-[12px] object-contain cursor-move"
-                                />
-                                <h3 className="font-bold text-[16px] text-sub-headings">Link #{index + 1}</h3>
+                      <ScrollArea className="h-[460px] w-full">
+                        <Reorder.Group axis="y" values={links} onReorder={handleReorder} className='flex flex-col gap-3 w-full'>
+                        {
+                        links.map((link, index) => (
+                          <Reorder.Item value={link} key={link.id}>
+                            <div key={link.id} className="w-full items-center justify-center gap-2 rounded-[12px] bg-add-new py-5 px-6 flex-grow">
+                              <div className="flex justify-between items-center mb-2">
+                                <div className="flex items-center gap-3">
+                                  <Image
+                                    src={sort}
+                                    width={12}
+                                    height={6}
+                                    alt="Sort Icon"
+                                    className="h-[6px] w-[12px] object-contain cursor-move"
+                                  />
+                                  <h3 className="font-bold text-[16px] text-sub-headings">Link #{index + 1}</h3>
+                                </div>
+                                <Button onClick={() => removeLink(link.id)} variant="ghost" className="font-normal text-[16px] text-sub-headings">
+                                  Remove
+                                </Button>
                               </div>
-                              <Button onClick={() => removeLink(link.id)} variant="ghost" className="font-normal text-[16px] text-sub-headings">
-                                Remove
-                              </Button>
-                            </div>
-                            <div className="mb-2">
-                              <label className="block text-sm font-medium mb-1">Platform</label>
-                              <Select onValueChange={(value) => updateLink(link.id, 'platform', value)}>
-                                <SelectTrigger>
-                                  <SelectValue className="font-normal text-[12px] text-headings" placeholder="Select a platform" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {
-                                    platforms.map((platform, index) => (
-                                      <SelectItem key={index} value={platform.label} className="font-normal text-[16px] text-headings">
-                                        <div className="flex items-center gap-3">
-                                          <Image
-                                            src={platform.icon}
-                                            height={16}
-                                            width={16}
-                                            alt={platform.label}
-                                            className={`h-4 w-4`}
-                                          />
-                                          <span>{platform.label}</span>
-                                        </div>
-                                      </SelectItem>
-                                    ))
+                              <div className="mb-2">
+                                <label className="block text-sm font-medium mb-1">Platform</label>
+                                <Select onValueChange={(value) => updateLink(link.id, 'platform', value)}>
+                                  <SelectTrigger>
+                                    <SelectValue className="font-normal text-[12px] text-headings" placeholder="Select a platform" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {
+                                      platforms.map((platform, index) => (
+                                        <SelectItem key={index} value={platform.label} className="font-normal text-[16px] text-headings">
+                                          <div className="flex items-center gap-3">
+                                            <Image
+                                              src={platform.icon}
+                                              height={16}
+                                              width={16}
+                                              alt={platform.label}
+                                              className={`h-4 w-4`}
+                                            />
+                                            <span>{platform.label}</span>
+                                          </div>
+                                        </SelectItem>
+                                      ))
+                                    }
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Link</label>
+                                <Input
+                                  type="url"
+                                  placeholder={`${link.platform === 'Email' ? 'eg. johnappleseed@example.com' : 'e.g. https://www.'+getExampleURL(link.platform)+'johnappleseed'}`}
+                                  value={link.url}
+                                  onChange={(e) => updateLink(link.id, 'url', e.target.value)}
+                                  icon={<Image src={copy} alt="link" height={16} width={16}/>}
+                                  errorMessage={
+                                    `${!link.isValid && link.isTouched ? link.errorMessage : ''}`
                                   }
-                                </SelectContent>
-                              </Select>
+                                  className={
+                                    `${!link.isValid && link.isTouched ? 'border-red-500 focus:ring-red-500 ring-offset-red-500 focus-within:ring-1 focus-within:ring-red-500 focus-within:ring-offset-0' : ''}`
+                                  }
+                                />
+                              </div>
                             </div>
-                            <div>
-                              <label className="block text-sm font-medium mb-1">Link</label>
-                              <Input
-                                type="url"
-                                placeholder={`${link.platform === 'Email' ? 'eg. johnappleseed@example.com' : 'e.g. https://www.'+getExampleURL(link.platform)+'johnappleseed'}`}
-                                value={link.url}
-                                onChange={(e) => updateLink(link.id, 'url', e.target.value)}
-                                icon={<Image src={copy} alt="link" height={16} width={16}/>}
-                                errorMessage={
-                                  `${!link.isValid && link.isTouched ? link.errorMessage : ''}`
-                                }
-                                className={
-                                  `${!link.isValid && link.isTouched ? 'border-red-500 focus:ring-red-500 ring-offset-red-500 focus-within:ring-1 focus-within:ring-red-500 focus-within:ring-offset-0' : ''}`
-                                }
-                              />
-                            </div>
-                          </div>
-                        </Reorder.Item>
-                      ))}
-                      </Reorder.Group>
+                          </Reorder.Item>
+                        ))}
+                        </Reorder.Group>
+                      </ScrollArea>
                     )}
                 </div>
               </div>
